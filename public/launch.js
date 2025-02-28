@@ -48,12 +48,12 @@ window.onload = function() {
                     autostart: false,
                     network_relay_url: networkRelay,
                 }
-                if (initURL.searchParams.get('cd') != 'none') {
+                
                     vmConfig.cdrom = {
-                        url: initURL.searchParams.get('cd'),
+                        url: 'TinyCore-14.0.iso',
                         async: asyncEnabled,
                     };
-                }
+                
                 if (initURL.searchParams.get('floppy') != 'none') {
                     vmConfig.fda = {
                         url: initURL.searchParams.get('floppy'),
