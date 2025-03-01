@@ -205,6 +205,7 @@ window.onload = function() {
             }
             catch (error) {
                 alert('Oh no! An error occured. Please try again later.')
+                alert(error)
                 console.log(error);
             }
 
