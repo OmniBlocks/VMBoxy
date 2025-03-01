@@ -20,7 +20,7 @@ window.onload = function() {
         if (this.readyState == 4 && this.status == 200) {
             VMs = JSON.parse(xhttp.responseText);
             var initURL = new URL(window.location.href);
-            type = 'Custom'
+            type = "Custom"
             var ram = Number(initURL.searchParams.get('ram'));
             var vram = Number(initURL.searchParams.get('vram'));
             var acpiEnabled = eval(initURL.searchParams.get('acpi'));
