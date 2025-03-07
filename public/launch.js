@@ -14,21 +14,24 @@ window.onload = function() {
     const script = document.createElement("script");
     script.src = "build/xterm.js";
     script.async = true;
+    script.onload = function() {
+        initializeVM();
+    };
     document.body.appendChild(script);
+};
+
+function initializeVM() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             VMs = JSON.parse(xhttp.responseText);
             var initURL = new URL(window.location.href);
-            type = 'Custom'
-            var ram = Number(initURL.searchParams.get('ram'));
-            var vram = Number(initURL.searchParams.get('vram'));
+            type = 'Custom';
+            var ram = 2048;
+            var vram = 64;
             var acpiEnabled = eval(initURL.searchParams.get('acpi'));
             var asyncEnabled = eval(initURL.searchParams.get('async'));
-            var networkRelay = initURL.searchParams.get('relay');
-            if (networkRelay == 'none') {
-                networkRelay = '';
-            }
+            var networkRelay = 'relay.widgetry.org';
             document.title = type + ' - CloudVM';
             var cdURL;
             if (type == "Custom") {
@@ -47,12 +50,12 @@ window.onload = function() {
                     },
                     autostart: true,
                     network_relay_url: networkRelay,
-                }
+                };
                 
-                    vmConfig.cdrom = {
-                        url: 'TinyCore-14.0.iso',
-                        async: asyncEnabled,
-                    };
+                vmConfig.cdrom = {
+                    url: 'TinyCore-14.0.iso',
+                    async: asyncEnabled,
+                };
                 
                 if (initURL.searchParams.get('floppy') != 'none') {
                     vmConfig.fda = {
