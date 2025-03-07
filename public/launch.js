@@ -33,17 +33,17 @@ window.onload = function() {
             var cdURL;
             if (type == "Custom") {
                 var vmConfig = {
-                    wasm_path: "/build/v86.wasm",
+                    wasm_path: "build/v86.wasm",
                     memory_size: ram * 1024 * 1024, //megabytes to bytes
                     vga_memory_size: vram * 1024 * 1024, //megabytes to bytes
                     screen_container: $("osGUI"),
                     serial_container_xtermjs: $("terminal"),
                     acpi: acpiEnabled,
                     bios: {
-                        url: "/bios/seabios.bin",
+                        url: "bios/seabios.bin",
                     },
                     vga_bios: {
-                        url: "/bios/vgabios.bin",
+                        url: "bios/vgabios.bin",
                     },
                     autostart: true,
                     network_relay_url: networkRelay,
@@ -84,16 +84,16 @@ window.onload = function() {
                 const vm = VMs[type];
 
                 var vmConfig = {
-                    wasm_path: "/build/v86.wasm",
+                    wasm_path: "build/v86.wasm",
                     memory_size: ram * 1024 * 1024, //megabytes to bytes
                     vga_memory_size: vram * 1024 * 1024, //megabytes to bytes
                     screen_container: $("osGUI"),
                     serial_container_xtermjs: $("terminal"),
                     bios: {
-                        url: "/bios/seabios.bin",
+                        url: "bios/seabios.bin",
                     },
                     vga_bios: {
-                        url: "/bios/vgabios.bin",
+                        url: "bios/vgabios.bin",
                     },
                     autostart: false,
                     network_relay_url: networkRelay,
