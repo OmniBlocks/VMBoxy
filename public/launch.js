@@ -34,6 +34,12 @@ function initializeVM() {
             var networkRelay = 'wss://relay.widgetry.org';
             document.title = type + ' - CloudVM';
             var cdURL;
+
+            console.log("initURL:", initURL);
+            console.log("acpiEnabled:", acpiEnabled);
+            console.log("asyncEnabled:", asyncEnabled);
+            console.log("networkRelay:", networkRelay);
+
             if (type == "Custom") {
                 var vmConfig = {
                     wasm_path: "build/v86.wasm",
@@ -51,12 +57,14 @@ function initializeVM() {
                     autostart: true,
                     network_relay_url: networkRelay,
                 };
-                
+
+                console.log("vmConfig:", vmConfig);
+
                 vmConfig.cdrom = {
                     url: 'TinyCore-14.0.iso',
                     async: asyncEnabled,
                 };
-                
+
                 if (initURL.searchParams.get('floppy') != 'none') {
                     vmConfig.fda = {
                         url: initURL.searchParams.get('floppy'),
