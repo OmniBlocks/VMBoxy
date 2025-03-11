@@ -31,7 +31,7 @@ function initializeVM() {
             var vram = 64;
             var acpiEnabled = eval(initURL.searchParams.get('acpi'));
             var asyncEnabled = eval(initURL.searchParams.get('async'));
-            var networkRelay = 'relay.widgetry.org';
+            var networkRelay = 'wss://relay.widgetry.org';
             document.title = type + ' - CloudVM';
             var cdURL;
             if (type == "Custom") {
