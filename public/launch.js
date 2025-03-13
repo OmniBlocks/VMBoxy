@@ -88,8 +88,8 @@ function initializeVM() {
                 }
 
                 if (VMs[type] == null) {
-                    alert(type + ' is not a valid VM. Press OK to return to the launcher.');
-                    window.open('https://vm.davidfahim.repl.co/', '_top');
+                    alert(type + ' is not a valid VM. Press OK to try again.');
+                    window.open('https://omniblocks.github.io/VMBoxy', '_top');
                 }
 
                 const vm = VMs[type];
@@ -111,7 +111,7 @@ function initializeVM() {
                 }
 
                 if (vm.cmdline != null) {
-                    vmConfig.cmdline = vm.cmdline.join(" ");
+                    vmConfig.cmdline = vm.cmdline.join(" ") + " console=ttyS0";
                     if (vmConfig.cmdline.includes("cpc" || "if" || "ip")) {
                         alert('Follow the "Recommended commands after booting" section which may contain commands that you need to run in order to gain internet access.');
                     }
