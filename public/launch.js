@@ -31,15 +31,9 @@ function initializeVM() {
             var vram = 64;
             var acpiEnabled = eval(initURL.searchParams.get('acpi'));
             var asyncEnabled = eval(initURL.searchParams.get('async'));
-            var networkRelay = 'wss://relay.widgetry.org';
+            var networkRelay = 'relay.widgetry.org';
             document.title = type + ' - CloudVM';
             var cdURL;
-
-            console.log("initURL:", initURL);
-            console.log("acpiEnabled:", acpiEnabled);
-            console.log("asyncEnabled:", asyncEnabled);
-            console.log("networkRelay:", networkRelay);
-
             if (type == "Custom") {
                 var vmConfig = {
                     wasm_path: "build/v86.wasm",
@@ -57,14 +51,12 @@ function initializeVM() {
                     autostart: true,
                     network_relay_url: networkRelay,
                 };
-
-                console.log("vmConfig:", vmConfig);
-
+                
                 vmConfig.cdrom = {
                     url: 'TinyCore-14.0.iso',
                     async: asyncEnabled,
                 };
-
+                
                 if (initURL.searchParams.get('floppy') != 'none') {
                     vmConfig.fda = {
                         url: initURL.searchParams.get('floppy'),
@@ -88,8 +80,8 @@ function initializeVM() {
                 }
 
                 if (VMs[type] == null) {
-                    alert(type + ' is not a valid VM. Press OK to try again.');
-                    window.open('https://omniblocks.github.io/VMBoxy', '_top');
+                    alert(type + ' is not a valid VM. Press OK to return to the launcher.');
+                    window.open('https://vm.davidfahim.repl.co/', '_top');
                 }
 
                 const vm = VMs[type];
@@ -111,7 +103,7 @@ function initializeVM() {
                 }
 
                 if (vm.cmdline != null) {
-                    vmConfig.cmdline = vm.cmdline.join(" ") + " console=ttyS0";
+                    vmConfig.cmdline = vm.cmdline.join(" ");
                     if (vmConfig.cmdline.includes("cpc" || "if" || "ip")) {
                         alert('Follow the "Recommended commands after booting" section which may contain commands that you need to run in order to gain internet access.');
                     }
